@@ -27,7 +27,7 @@ Source2:       %{plug_name}-default.blacklist
 # Allow wildcard in blacklist filename
 Patch0:        %{plug_name}-blacklist.patch
 
-BuildRequires: php-devel >= 5.2.0
+BuildRequires: php-devel >= 5.4.0
 BuildRequires: php-pear
 
 Requires(post): %{__pecl}
@@ -170,6 +170,9 @@ fi
 
 
 %changelog
+* Thu Jun 06 2013 Ben Harper <ben.harper@rackspace.com> - 7.0.1-4.ius
+- update BuildRequires
+
 * Tue May 14 2013 Ben Harper <ben.harper@rackspace.com> - 7.0.1-3.ius
 -porting from EPEL
 

@@ -27,11 +27,12 @@ Source2:       %{plug_name}-default.blacklist
 # Allow wildcard in blacklist filename
 Patch0:        %{plug_name}-blacklist.patch
 
-BuildRequires: php-devel >= 5.4.0
-BuildRequires: php-pear
+BuildRequires: %{php_base}-devel >= 5.4.0
+BuildRequires: %{php_base}-pear
 
 Requires(post): %{__pecl}
 Requires(postun): %{__pecl}
+#Requires:      php(zend-abi) = %{php_zend_api}
 Requires:      php(zend-abi) = %{php_zend_api}
 Requires:      php(api) = %{php_core_api}
 

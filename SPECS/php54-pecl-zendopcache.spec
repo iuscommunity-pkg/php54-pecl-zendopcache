@@ -32,19 +32,22 @@ BuildRequires: %{php_base}-pear
 
 Requires(post): %{__pecl}
 Requires(postun): %{__pecl}
-#Requires:      php(zend-abi) = %{php_zend_api}
 Requires:      %{php_base}(zend-abi) = %{php_zend_api}
 Requires:      %{php_base}(api) = %{php_core_api}
 
 # Only one opcode cache could be enabled
-Conflicts:     php-eaccelerator
-Conflicts:     php-xcache
+Conflicts:     %{php_base}-mmcache %{php_base}-eaccelerator
+Conflicts:     %{php_base}-xcache
 # APC 3.1.15 offer an option to disable opcache
-Conflicts:     php-pecl-apc < 3.1.15
+Conflicts:     %{php_base}-pecl-apc < 3.1.15
 Provides:      php-pecl(%{plug_name}) = %{version}%{?prever}
+Provides:      %{php_base}-pecl(%{plug_name}) = %{version}%{?prever}
 Provides:      php-pecl(%{plug_name})%{?_isa} = %{version}%{?prever}
+Provides:      %{php_base}-pecl(%{plug_name})%{?_isa} = %{version}%{?prever}
 Provides:      php-%{plug_name} = %{version}-%{release}
+Provides:      %{php_base}-%{plug_name} = %{version}-%{release}
 Provides:      php-%{plug_name}%{?_isa} = %{version}-%{release}
+Provides:      %{php_base}-%{plug_name}%{?_isa} = %{version}-%{release}
 
 # Filter private shared
 %{?filter_provides_in: %filter_provides_in %{_libdir}/.*\.so$}
@@ -172,7 +175,7 @@ fi
 
 %changelog
 * Thu Jun 06 2013 Ben Harper <ben.harper@rackspace.com> - 7.0.1-4.ius
-- update BuildRequires
+- update BuildRequires, Requires and Provides
 
 * Tue May 14 2013 Ben Harper <ben.harper@rackspace.com> - 7.0.1-3.ius
 -porting from EPEL

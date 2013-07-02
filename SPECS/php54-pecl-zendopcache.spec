@@ -33,8 +33,8 @@ BuildRequires: %{php_base}-pear
 Requires(post): %{__pecl}
 Requires(postun): %{__pecl}
 #Requires:      php(zend-abi) = %{php_zend_api}
-Requires:      php(zend-abi) = %{php_zend_api}
-Requires:      php(api) = %{php_core_api}
+Requires:      %{php_base}(zend-abi) = %{php_zend_api}
+Requires:      %{php_base}(api) = %{php_core_api}
 
 # Only one opcode cache could be enabled
 Conflicts:     php-eaccelerator

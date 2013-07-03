@@ -11,7 +11,7 @@
 
 Name:          %{php_base}-pecl-%{pecl_name}
 Version:       7.0.1
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       The Zend OPcache
 
 Group:         Development/Libraries

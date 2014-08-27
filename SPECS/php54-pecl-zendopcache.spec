@@ -32,6 +32,8 @@ Source4:       https://raw2.github.com/zendtech/ZendOptimizerPlus/e8e28cd95c8aa6
 # Allow wildcard in blacklist filename
 Patch0:        %{plug_name}-blacklist.patch
 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 BuildRequires: %{php_base}-devel >= 5.4.0
 BuildRequires: %{php_base}-pear
 

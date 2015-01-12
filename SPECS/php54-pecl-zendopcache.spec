@@ -28,10 +28,6 @@ Source2:       %{plug_name}-default.blacklist
 Source3:       https://raw2.github.com/zendtech/ZendOptimizerPlus/e8e28cd95c8aa660c28c2166da679b50deb50faa/tests/blacklist.inc
 Source4:       https://raw2.github.com/zendtech/ZendOptimizerPlus/e8e28cd95c8aa660c28c2166da679b50deb50faa/tests/php_cli_server.inc
 
-# Allow comments in blacklist content
-# Allow wildcard in blacklist filename
-Patch0:        %{plug_name}-blacklist.patch
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: %{php_base}-devel >= 5.4.0
@@ -75,7 +71,6 @@ mv %{pecl_name}-%{version} NTS
 
 cp %{SOURCE3} %{SOURCE4} NTS/tests/
 cd NTS
-#%patch0 -p1 -b .blacklist
 
 # Sanity check, really often broken
 extver=$(sed -n '/#define PHP_ZENDOPCACHE_VERSION/{s/.* "//;s/".*$//;p}' ZendAccelerator.h)

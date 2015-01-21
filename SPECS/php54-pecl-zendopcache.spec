@@ -10,7 +10,7 @@
 %define php_base php54
 
 Name:          %{php_base}-pecl-%{pecl_name}
-Version:       7.0.3
+Version:       7.0.4
 Release:       1%{?dist}
 Summary:       The Zend OPcache
 
@@ -27,6 +27,9 @@ Source2:       %{plug_name}-default.blacklist
 # http://dl.fedoraproject.org/pub/epel/6/SRPMS/php-pecl-zendopcache-7.0.3-1.el6.src.rpm
 Source3:       https://raw2.github.com/zendtech/ZendOptimizerPlus/e8e28cd95c8aa660c28c2166da679b50deb50faa/tests/blacklist.inc
 Source4:       https://raw2.github.com/zendtech/ZendOptimizerPlus/e8e28cd95c8aa660c28c2166da679b50deb50faa/tests/php_cli_server.inc
+
+# generated from https://github.com/zendtech/ZendOptimizerPlus/commit/b5a455c49974ffc077aaad59c398cc80f6a20d85
+Patch1:        test-suite-false-positive.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -71,6 +74,8 @@ mv %{pecl_name}-%{version} NTS
 
 cp %{SOURCE3} %{SOURCE4} NTS/tests/
 cd NTS
+
+%patch1 -p1
 
 # Sanity check, really often broken
 extver=$(sed -n '/#define PHP_ZENDOPCACHE_VERSION/{s/.* "//;s/".*$//;p}' ZendAccelerator.h)
@@ -177,6 +182,10 @@ fi
 
 
 %changelog
+* Mon Jan 12 2015 Carl George <carl.george@rackspace.com> - 7.0.4-1.ius
+- Latest upstream
+- Add patch1 to clean up false positive in test suite
+
 * Mon Aug 04 2014 Ben Harper <ben.harper@rackspace.com> - 7.0.3-1.ius
 - latest release,  7.0.3
 - disable Patch0, patched upstream
